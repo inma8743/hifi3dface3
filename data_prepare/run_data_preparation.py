@@ -60,6 +60,8 @@ import shutil
 
 
 def detect_2Dlmk_all_imgs(graph_file, img_dir, lmk3D_txt_path, lmk2D_txt_path):
+    LMK2D_batch = None  # Initialize to None or an appropriate default value
+
     with tf.Graph().as_default():
         graph_def = tf.GraphDef()
         graph_file = graph_file
