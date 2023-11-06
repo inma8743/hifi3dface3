@@ -79,7 +79,7 @@ class RGB_load(object):
         lmk3d_triplet = []
         lmk2d_triplet = []
 
-        print('image lan length', images_name_list)
+        print('image lan length', len(images_name_list))
         print('num_of_img', num_of_img)
 
         for index in range(0, num_of_img):
