@@ -11,4 +11,5 @@ cudnn_available = tf.test.is_built_with_cuda()
 gpu_status = 'Available' if gpu_available else 'Not available'
 cudnn_status = 'Available' if cudnn_available else 'Not available'
 
-(gpu_status, cudnn_status)
+print("CUDA", gpu_status)
+print("cudnn_status", cudnn_status)
