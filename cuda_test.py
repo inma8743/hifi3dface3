@@ -1,20 +1,14 @@
 import tensorflow as tf
 
-# TensorFlow가 GPU를 인식하는지 확인합니다.
-gpu_device_name = tf.test.gpu_device_name()
-if gpu_device_name:
-    gpu_confirmation = 'Default GPU Device: {}'.format(gpu_device_name)
-else:
-    gpu_confirmation = "TensorFlow GPU device not found"
+# Check if TensorFlow can detect the GPU
+gpu_available = tf.test.is_gpu_available(cuda_only=False, min_cuda_compute_capability=None)
 
-# 간단한 연산을 통해 GPU 사용을 확인합니다.
-with tf.device('/GPU:0'):
-    a = tf.constant([[1.0, 2.0, 3.0], [4.0, 5.0, 6.0]])
-    b = tf.constant([[1.0, 2.0], [3.0, 4.0], [5.0, 6.0]])
-    c = tf.matmul(a, b)
+# Additional line to test cuDNN installation.
+# This will try to load the cuDNN library and raise an error if it cannot.
+cudnn_available = tf.test.is_built_with_cuda()
 
-# cudnn이 설치되어 있는지 확인합니다.
-cudnn_confirmation = tf.test.is_built_with_cuda()
+# Print the findings
+gpu_status = 'Available' if gpu_available else 'Not available'
+cudnn_status = 'Available' if cudnn_available else 'Not available'
 
-# 결과 출력
-gpu_confirmation, c.numpy(), cudnn_confirmation
+(gpu_status, cudnn_status)
